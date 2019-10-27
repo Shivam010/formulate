@@ -384,7 +384,6 @@ class AverageData {
 }
 
 Future<AverageData> fetchData() async {
-  print("called");
   final response = await http
       .get('https://shivam010.herokuapp.com/api/v1?commodity=Crudeoil');
 

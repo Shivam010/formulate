@@ -1,4 +1,4 @@
-package in.shivam010.formulate
+package com.shivam010.formulate
 
 import android.os.Bundle
 
