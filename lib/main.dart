@@ -203,13 +203,13 @@ class _PresentorState extends State<Presentor> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(
             "FORMULATE",
             style: TextStyle(
               fontSize: 30,
-              color: Yellowish,
+              color: Orange,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
@@ -240,54 +240,46 @@ class _PresentorState extends State<Presentor> {
           ),
           SizedBox(height: 10.0),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              // SizedBox(width: 5),
               btn('7', true),
-              // SizedBox(width: 3),
               btn('8', true),
-              SizedBox(width: 3),
               btn('9', true),
-              SizedBox(width: 3),
               btn('ac', false),
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              SizedBox(width: 5),
               btn('4', true),
-              SizedBox(width: 3),
               btn('5', true),
-              SizedBox(width: 3),
               btn('6', true),
-              SizedBox(width: 3),
               btn('c', false),
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              SizedBox(width: 5),
               btn('1', true),
-              // SizedBox(width: 3),
               btn('2', true),
-              SizedBox(width: 3),
               btn('3', true),
-              SizedBox(width: 3),
               btn('-', false),
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              SizedBox(width: 5),
               btn('0', true),
-              SizedBox(width: 3),
               btn('00', true),
-              SizedBox(width: 3),
               btn('•', true),
-              SizedBox(width: 3),
               btn('»', false),
             ],
           ),
-          SizedBox(height: 10.0)
+          SizedBox(height: 20.0)
         ],
       ),
     );
@@ -340,12 +332,12 @@ class _PresentorState extends State<Presentor> {
 
   Widget btn(String btntext, bool normalColor) {
     return Container(
-      padding: EdgeInsets.only(left: 10, bottom: 10),
+      padding: EdgeInsets.only(bottom: 5),
       child: RaisedButton(
         child: Text(
           btntext,
           style: TextStyle(
-            fontSize: 40.0,
+            fontSize: 35.0,
             color: Colors.white,
           ),
         ),
@@ -353,7 +345,7 @@ class _PresentorState extends State<Presentor> {
         elevation: 10,
         highlightElevation: 2,
         color: normalColor ? DarkGray : Orange,
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(10.0),
         splashColor: normalColor ? Greyish : Yellowish,
         highlightColor: normalColor ? Greyish : Yellowish,
         shape: CircleBorder(),
@@ -390,6 +382,7 @@ Future<AverageData> fetchData() async {
   if (response.statusCode == 200) {
     return AverageData.fromJson(json.decode(response.body));
   } else {
-    throw Exception('Failed to load post');
+    return AverageData(
+        error: "Something went wrong", buy: 0, min: 0, sell: 0, max: 0);
   }
 }
